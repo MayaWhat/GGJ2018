@@ -2,8 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMasterScript : MonoBehaviour {
+
+	public static GameMasterScript TheMaster {
+		get;
+		private set;
+	}
 
 	public int LowerLevelBound;
 
@@ -28,6 +34,15 @@ public class GameMasterScript : MonoBehaviour {
 		}
 	}
 
+	void Awake() {
+		if(GameMasterScript.TheMaster != null) {
+			Destroy(this);
+			return;
+		}
+
+		GameMasterScript.TheMaster = this;
+	}
+
 	// Use this for initialization
 	void Start () {
 		
@@ -38,7 +53,7 @@ public class GameMasterScript : MonoBehaviour {
 		
 	}
 
-	void FixedUpdate() {
+	void HandleToggle() {
 		var inputToggle = Input.GetAxis("ToggleState"); 
 
         if(!canToggle) {
@@ -55,6 +70,20 @@ public class GameMasterScript : MonoBehaviour {
             CurrentState = (CurrentState + 1) % 2;
 			canToggle = false;
         }  
+	}
+
+	void HandleRestart() {
+		var inputRestart = Input.GetAxis("Restart");
+
+		if(inputRestart > 0) {
+			var currentScene = SceneManager.GetActiveScene();
+			SceneManager.LoadScene(currentScene.name);
+		}
+	}
+
+	void FixedUpdate() {
+		HandleToggle();
+		HandleRestart();
 	}
 
 	public event EventHandler StateChanged;

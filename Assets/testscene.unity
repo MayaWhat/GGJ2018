@@ -207,7 +207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFocus: {fileID: 1263988291}
-  master: {fileID: 1955827975}
 --- !u!1001 &463623906
 Prefab:
   m_ObjectHideFlags: 0
@@ -245,11 +244,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4934815938024492, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
+        type: 2}
+      propertyPath: master
+      value: 
+      objectReference: {fileID: 1955827975}
     - target: {fileID: 1270790042051108, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
       propertyPath: m_Name
       value: FloorObject2 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
+        type: 2}
+      propertyPath: theState
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
@@ -291,11 +300,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4934815938024492, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
+        type: 2}
+      propertyPath: master
+      value: 
+      objectReference: {fileID: 1955827975}
     - target: {fileID: 1270790042051108, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
       propertyPath: m_Name
       value: FloorObject2 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
+        type: 2}
+      propertyPath: theState
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
@@ -381,6 +400,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114714874446296088, guid: 77da151061181324da4c794e0b274711,
+        type: 2}
+      propertyPath: master
+      value: 
+      objectReference: {fileID: 1955827975}
     - target: {fileID: 1229579735324574, guid: 77da151061181324da4c794e0b274711, type: 2}
       propertyPath: m_Name
       value: FloorObject10
@@ -425,16 +449,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4934815938024492, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
       propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1270790042051108, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
-      propertyPath: m_Name
-      value: FloorObject2 (4)
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
         type: 2}
-      propertyPath: theState
-      value: 1
+      propertyPath: master
+      value: 
+      objectReference: {fileID: 1955827975}
+    - target: {fileID: 1270790042051108, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
+      propertyPath: m_Name
+      value: FloorObject2 (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
@@ -481,11 +505,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4934815938024492, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
+        type: 2}
+      propertyPath: master
+      value: 
+      objectReference: {fileID: 1955827975}
     - target: {fileID: 1270790042051108, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
       propertyPath: m_Name
       value: FloorObject2 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
+        type: 2}
+      propertyPath: theState
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
@@ -533,7 +567,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4337437200776694, guid: ae3a7b2fc69eba64199cf54f6679957c, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269021013502666, guid: ae3a7b2fc69eba64199cf54f6679957c,
+        type: 2}
+      propertyPath: horizontalAcceleration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114269021013502666, guid: ae3a7b2fc69eba64199cf54f6679957c,
+        type: 2}
+      propertyPath: horizontalMaxSpeed
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae3a7b2fc69eba64199cf54f6679957c, type: 2}
@@ -579,9 +623,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
         type: 2}
-      propertyPath: theState
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: master
+      value: 
+      objectReference: {fileID: 1955827975}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
   m_IsPrefabParent: 0
@@ -622,16 +666,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4934815938024492, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
       propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1270790042051108, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
-      propertyPath: m_Name
-      value: FloorObject2 (2)
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114464655044519336, guid: 8e0c0e916883fc645836eb1b336b5096,
         type: 2}
-      propertyPath: theState
-      value: 1
+      propertyPath: master
+      value: 
+      objectReference: {fileID: 1955827975}
+    - target: {fileID: 1270790042051108, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}
+      propertyPath: m_Name
+      value: FloorObject2 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8e0c0e916883fc645836eb1b336b5096, type: 2}

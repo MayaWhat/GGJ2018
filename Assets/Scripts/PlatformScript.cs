@@ -12,22 +12,12 @@ public class PlatformScript : MonoBehaviour {
 	SpriteRenderer sprite;
 
 	[SerializeField]
-	GameMasterScript master;
-
-	[SerializeField]
 	Collider2D collisions;
 
 	// Use this for initialization
 	void Start () {
 		HandleCurrentState();
-	}
-
-	void OnEnable() {
-		master.StateChanged += StateChangedHandler;
-	}
-
-	void OnDisable() {
-		master.StateChanged -= StateChangedHandler;
+		GameMasterScript.TheMaster.StateChanged += StateChangedHandler;
 	}
 
 	void SetColor(bool isEnabled) {
@@ -47,7 +37,7 @@ public class PlatformScript : MonoBehaviour {
 	}
 
 	private void HandleCurrentState() {
-		if(master.CurrentState == theState) {
+		if(GameMasterScript.TheMaster.CurrentState == theState) {
 			collisions.enabled = true;
 			SetColor(true);
 		}
