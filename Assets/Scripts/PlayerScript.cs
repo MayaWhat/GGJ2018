@@ -11,6 +11,9 @@ public class PlayerScript : MonoBehaviour {
     Collider2D collisions;
 
     [SerializeField]
+    Collider2D floorCollisions;
+
+    [SerializeField]
     float horizontalAcceleration;
 
     [SerializeField]
@@ -76,7 +79,7 @@ public class PlayerScript : MonoBehaviour {
 
     bool TestPlatformBelow()
     {
-        return collisions.Raycast(Vector2.down, new RaycastHit2D[1], collisions.bounds.extents.y + 0.1f) > 0;
+        return floorCollisions.GetContacts(new ContactPoint2D[1]) > 0;
     }
 
     void FixedUpdate()
