@@ -181,6 +181,9 @@ MonoBehaviour:
   horizontalAcceleration: 8
   horizontalMaxSpeed: 8
   jumpVelocityBoost: 12
+  damageVelocityBoost: 20
+  iFrames: 300
+  hp: 3
 --- !u!212 &212384527543277142
 SpriteRenderer:
   m_ObjectHideFlags: 1

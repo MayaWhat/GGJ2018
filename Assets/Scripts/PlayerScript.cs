@@ -22,6 +22,17 @@ public class PlayerScript : MonoBehaviour {
     [SerializeField]
     float jumpVelocityBoost;
 
+    [SerializeField]
+    float damageVelocityBoost;
+
+    [SerializeField]
+    int iFrames;
+
+    [SerializeField]
+    int hp;
+
+    int currentIFrames = 0;
+
     bool canJump = true;
 
 
@@ -86,5 +97,20 @@ public class PlayerScript : MonoBehaviour {
     {
         HandleHorizontalMovement();
         HandleJumping();
+
+        if(currentIFrames > 0) {
+            currentIFrames--;
+        }
     }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if(currentIFrames == 0) {
+		    var spike = other.GetComponent(typeof(SpikeScript));
+            if(spike != null && body.velocity.y < 0) {
+                currentIFrames = iFrames;
+                hp--;
+                body.AddForce(new Vector2(0, damageVelocityBoost), ForceMode2D.Impulse);
+            }
+        }
+	}
 }
