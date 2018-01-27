@@ -48,6 +48,14 @@ public class PlayerScript : MonoBehaviour {
     Animator animator;
     SpriteRenderer sprite;
 
+    AudioSource audio;
+
+    [SerializeField]
+    AudioClip[] ouchClips;
+
+    [SerializeField]
+    AudioClip fallClip;
+
     public bool WeDied {
         get
         {
@@ -60,6 +68,7 @@ public class PlayerScript : MonoBehaviour {
 	void Start () {
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -180,14 +189,25 @@ public class PlayerScript : MonoBehaviour {
         if(currentIFrames == 0 || damage > 900) {
             hp -= damage;
 
+            if(damage > 900) {
+                audio.clip = fallClip;
+            }
+            else {
+                audio.clip = ouchClips[Random.Range(0, ouchClips.Length)];
+            }
+
+            audio.Play();
+
             if(WeDied) {
                 //body.simulated = false;
                 GameMasterScript.TheMaster.WeDied();
             }
+            else {
+                currentIFrames = iFrames;
+                if(stun) {
+                    currentStunnedFrames = stunnedFrames;
+                }
 
-            currentIFrames = iFrames;
-            if(stun) {
-                currentStunnedFrames = stunnedFrames;
             }
         }
     }
