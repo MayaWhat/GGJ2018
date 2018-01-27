@@ -76,15 +76,38 @@ public class PlayerScript : MonoBehaviour {
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();        
 	}
+
+    Color theRed = new Color(1f, 0.1f, 0.1f);
 	
 	// Update is called once per frame
 	void Update () {
 		if(currentIFrames > 0) {
-            sprite.color = new Color(1f, currentStunnedFrames > 0 ? 0.5f : 0f, 0f, 0.5f);
+            if(!fading) {
+                fading = true;
+                StartCoroutine(Fade(turningRed ? Color.white : theRed, turningRed ? theRed : Color.white));
+            }
         }
         else {
-            sprite.color = new Color(1f, currentStunnedFrames > 0 ? 0.5f : 0f, 0f, 1f);
+            sprite.color = Color.white;
         }
+	}
+
+    bool turningRed = true;
+    bool fading = false;
+    IEnumerator Fade(Color startColor, Color endColor) {
+		for (float f = 0f; f < 1; f += 0.1f) {
+            sprite.color = Color.Lerp(startColor, endColor, f);
+
+            if(currentIFrames <= 0) {
+                sprite.color = Color.white;
+                break;
+            }
+
+			yield return null;
+		}
+
+        fading = false;
+        turningRed = !turningRed;
 	}
 
     void HandleHorizontalMovement()
@@ -137,6 +160,7 @@ public class PlayerScript : MonoBehaviour {
         {
             if (TestPlatformBelow())
             {
+                animator.SetBool("IsJumping", true);
                 body.AddForce(new Vector2(0, jumpVelocityBoost), ForceMode2D.Impulse);
                 canJump = false;
             }
@@ -186,6 +210,12 @@ public class PlayerScript : MonoBehaviour {
             currentStunnedFrames--;
         }
 
+        if(animator.GetBool("IsJumping") && body.velocity.y <= 0) {
+            animator.SetBool("IsJumping", false);
+        }
+
+        animator.SetBool("IsFalling", body.velocity.y < 0);
+
         if(currentIFrames > 0) {
             currentIFrames--;
         }
@@ -231,7 +261,7 @@ public class PlayerScript : MonoBehaviour {
     void OnHitSpike(Collider2D other) {
         var spike = other.GetComponent<SpikeScript>();
         if(spike != null && ((spike.Inverted && body.velocity.y > 0) || (!spike.Inverted && body.velocity.y < 0))) {
-            TakeDamage(10, true);
+            TakeDamage(1, true);
 
             var percentOfMax = Mathf.Clamp(Mathf.Abs(body.velocity.y) / Physics2D.gravity.magnitude, 0f, 1f);
             var velocityIncrease = (spikeVelocityBoost * percentOfMax) + Mathf.Abs(body.velocity.y);
