@@ -210,11 +210,21 @@ public class PlayerScript : MonoBehaviour {
             currentStunnedFrames--;
         }
 
-        if(animator.GetBool("IsJumping") && body.velocity.y <= 0) {
-            animator.SetBool("IsJumping", false);
+        if(animator.GetBool("IsJumping")) {
+            if(body.velocity.y <= 0) {
+                animator.SetBool("IsJumping", false);
+            }
+
+            animator.SetBool("IsFalling", body.velocity.y < 0);
+        }
+        else if(!TestPlatformBelow()) {
+            animator.SetBool("IsFalling", true);
+        }
+        else {
+            animator.SetBool("IsFalling", false);
         }
 
-        animator.SetBool("IsFalling", body.velocity.y < 0);
+        
 
         if(currentIFrames > 0) {
             currentIFrames--;
