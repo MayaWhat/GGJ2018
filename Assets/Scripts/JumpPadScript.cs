@@ -7,11 +7,9 @@ public class JumpPadScript : MonoBehaviour {
 	[SerializeField]
 	float jumpVelocityBoost;
 
-	List<Collider2D> affectedColliders;
-
 	// Use this for initialization
 	void Start () {
-		affectedColliders = new List<Collider2D>();
+
 	}
 	
 	// Update is called once per frame
@@ -21,17 +19,9 @@ public class JumpPadScript : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other) {
         var rigidBody = other.GetComponent<Rigidbody2D>();
-		if(rigidBody != null && !affectedColliders.Contains(other)) {
-			affectedColliders.Add(other);
-
+		if(rigidBody != null) {
 			var velocityIncrease = jumpVelocityBoost - rigidBody.velocity.y;
 			rigidBody.AddForce(new Vector2(0, velocityIncrease), ForceMode2D.Impulse);
-		}
-	}
-
-	void OnTriggerExit2D(Collider2D other) {
-		if(affectedColliders.Contains(other)) {
-			affectedColliders.Remove(other);
 		}
 	}
 }

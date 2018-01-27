@@ -53,7 +53,7 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
@@ -173,8 +173,15 @@ public class PlayerScript : MonoBehaviour {
     void OnHitDamage(Collider2D other) {
         var damageDealer = other.GetComponent<DamageDealerScript>();
         if(damageDealer != null && currentIFrames <= 0) {
-            DealDamage(damageDealer.DamageAmount, true);
             var velocityChange = (((transform.position - damageDealer.transform.position).normalized) * damageVelocityBoost) - new Vector3(body.velocity.x, body.velocity.y, 0f);
+
+            if(damageDealer.ReceiveDamageIfAbove && velocityChange.y > 0) {
+                damageDealer.ReceiveDamage();
+            }
+            else {
+                DealDamage(damageDealer.DamageAmount, true);
+            }
+
             body.AddForce(velocityChange, ForceMode2D.Impulse);
         }
     }
