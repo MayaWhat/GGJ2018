@@ -43,6 +43,9 @@ public class PlayerScript : MonoBehaviour {
 
     bool canJump = true;
 
+    Animator animator;
+    SpriteRenderer sprite;
+
     public bool WeDied {
         get
         {
@@ -53,12 +56,12 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
+        animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        var sprite = GetComponentInChildren<SpriteRenderer>();
 		if(currentIFrames > 0) {
             sprite.color = new Color(1f, currentStunnedFrames > 0 ? 0.5f : 0f, 0f, 0.5f);
         }
@@ -70,15 +73,19 @@ public class PlayerScript : MonoBehaviour {
     void HandleHorizontalMovement()
     {
         var inputX = Input.GetAxis("Horizontal");
+        animator.SetBool("IsWalking", inputX != 0 && TestPlatformBelow());
+
         if (inputX > 0)
         {
             var maxVelocityIncrease = Mathf.Max(horizontalMaxSpeed - body.velocity.x, 0);
             body.AddForce(new Vector2(maxVelocityIncrease, 0), ForceMode2D.Impulse);
+            sprite.flipX = false;
         }
         else if (inputX < 0)
         {
             var maxVelocityIncrease = Mathf.Max(horizontalMaxSpeed - -body.velocity.x, 0);
             body.AddForce(new Vector2(-maxVelocityIncrease, 0), ForceMode2D.Impulse);
+            sprite.flipX = true;
         }
         else if(body.velocity.x != 0)
         {
