@@ -131,8 +131,11 @@ public class PlayerScript : MonoBehaviour {
 
                 currentIFrames = iFrames;
             }
+
+            var percentOfMax = Mathf.Clamp(Mathf.Abs(body.velocity.y) / Physics2D.gravity.magnitude, 0f, 1f);
+            var velocityIncrease = (damageVelocityBoost * percentOfMax) + Mathf.Abs(body.velocity.y);
             
-            body.AddForce(new Vector2(0, damageVelocityBoost * (spike.Inverted ? -1 : 1)), ForceMode2D.Impulse);
+            body.AddForce(new Vector2(0, velocityIncrease * (spike.Inverted ? -1 : 1)), ForceMode2D.Impulse);
         }        
 	}
 }

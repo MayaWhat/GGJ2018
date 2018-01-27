@@ -23,7 +23,9 @@ public class JumpPadScript : MonoBehaviour {
         var rigidBody = other.GetComponent<Rigidbody2D>();
 		if(rigidBody != null && !affectedColliders.Contains(other)) {
 			affectedColliders.Add(other);
-			rigidBody.AddForce(new Vector2(0, jumpVelocityBoost), ForceMode2D.Impulse);
+
+			var velocityIncrease = jumpVelocityBoost - rigidBody.velocity.y;
+			rigidBody.AddForce(new Vector2(0, velocityIncrease), ForceMode2D.Impulse);
 		}
 	}
 
