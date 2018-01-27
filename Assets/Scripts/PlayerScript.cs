@@ -120,6 +120,10 @@ public class PlayerScript : MonoBehaviour {
             return;
         }
 
+        if(transform.position.y < GameMasterScript.TheMaster.LowerLevelBound) {
+            TakeDamage(999, false);
+        }
+
         if(currentStunnedFrames <= 0) {
             HandleHorizontalMovement();
             HandleJumping();

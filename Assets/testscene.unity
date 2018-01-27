@@ -166,9 +166,10 @@ Prefab:
       propertyPath: m_Name
       value: FlyingBadGuy
       objectReference: {fileID: 0}
-    - target: {fileID: 1849076780803318, guid: 431a1c1eac07cc84eaaa269878ba5748, type: 2}
-      propertyPath: m_Layer
-      value: 11
+    - target: {fileID: 114388322112686272, guid: 431a1c1eac07cc84eaaa269878ba5748,
+        type: 2}
+      propertyPath: movementSpeed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 431a1c1eac07cc84eaaa269878ba5748, type: 2}
