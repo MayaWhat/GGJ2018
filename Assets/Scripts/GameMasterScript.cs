@@ -13,6 +13,9 @@ public class GameMasterScript : MonoBehaviour {
 	}
 
 	public int LowerLevelBound;
+	public int UpperLevelBound;
+	public int LeftLevelBound;
+	public int RightLevelBound;
 
 	[SerializeField]
 	int StartingState;

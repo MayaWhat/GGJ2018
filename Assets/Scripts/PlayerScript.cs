@@ -231,7 +231,7 @@ public class PlayerScript : MonoBehaviour {
     void OnHitSpike(Collider2D other) {
         var spike = other.GetComponent<SpikeScript>();
         if(spike != null && ((spike.Inverted && body.velocity.y > 0) || (!spike.Inverted && body.velocity.y < 0))) {
-            TakeDamage(1, true);
+            TakeDamage(10, true);
 
             var percentOfMax = Mathf.Clamp(Mathf.Abs(body.velocity.y) / Physics2D.gravity.magnitude, 0f, 1f);
             var velocityIncrease = (spikeVelocityBoost * percentOfMax) + Mathf.Abs(body.velocity.y);

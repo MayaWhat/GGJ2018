@@ -7,6 +7,8 @@ public class CameraScript : MonoBehaviour {
 	[SerializeField]
 	GameObject cameraFocus;
 
+
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,9 +17,23 @@ public class CameraScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(cameraFocus != null) {
-			var yLimit = Mathf.Max(cameraFocus.transform.position.y, GameMasterScript.TheMaster.LowerLevelBound + 12);
 
-			transform.position = new Vector3(cameraFocus.transform.position.x, yLimit, transform.position.z);
+			var cameraYSize = GetComponent<Camera>().orthographicSize;
+			var cameraXSize = cameraYSize / 9 * 16;
+
+			var xLimit = Mathf.Clamp(
+				cameraFocus.transform.position.x, 
+				GameMasterScript.TheMaster.LeftLevelBound + cameraXSize, 
+				GameMasterScript.TheMaster.RightLevelBound - cameraXSize
+			);
+
+			var yLimit = Mathf.Clamp(
+				cameraFocus.transform.position.y, 
+				GameMasterScript.TheMaster.LowerLevelBound + cameraYSize, 
+				GameMasterScript.TheMaster.UpperLevelBound - cameraYSize
+			);
+
+			transform.position = new Vector3(xLimit, yLimit, transform.position.z);
 		}
 	}
 }
