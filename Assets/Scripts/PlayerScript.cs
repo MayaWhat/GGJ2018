@@ -119,13 +119,13 @@ public class PlayerScript : MonoBehaviour {
             return;
         }
 
-        var spike = other.GetComponent(typeof(SpikeScript)) as SpikeScript;
+        var spike = other.GetComponent<SpikeScript>();
         if(spike != null && ((spike.Inverted && body.velocity.y > 0) || (!spike.Inverted && body.velocity.y < 0))) {
             if(currentIFrames == 0) {
                 hp--;
 
                 if(WeDied) {
-                    body.simulated = false;
+                    //body.simulated = false;
                     GameMasterScript.TheMaster.WeDied();
                 }
 

@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07d2ef1dc0881034e82463cb4ed190cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LowerLevelBound: 0
+  LowerLevelBound: -12
   StartingState: 0
   _currentState: 0
   diedText: {fileID: 0}
