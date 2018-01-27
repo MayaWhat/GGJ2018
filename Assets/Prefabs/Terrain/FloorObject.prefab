@@ -110,7 +110,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   theState: 0
   sprite: {fileID: 212069302917267168}
-  master: {fileID: 0}
   collisions: {fileID: 61657687709734002}
 --- !u!212 &212069302917267168
 SpriteRenderer:
