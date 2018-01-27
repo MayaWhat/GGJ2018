@@ -21,7 +21,19 @@ public class PlatformScript : MonoBehaviour {
 	}
 
 	void SetColor(bool isEnabled) {
-		sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, isEnabled ? 1f : 0.2f);
+		if(isEnabled) {
+			StartCoroutine(Fade(sprite.color, Color.white));
+		}
+		else {
+			StartCoroutine(Fade(sprite.color, new Color(0x18 / 255, 0x3F / 255, 0x3E / 255, 0.25f)));
+		}
+	}
+
+	IEnumerator Fade(Color startColor, Color endColor) {
+		for (float f = 0f; f < 1; f += 0.05f) {
+			sprite.color = Color.Lerp(startColor, endColor, f);
+			yield return null;
+		}
 	}
 
 	private void HandleCurrentState() {

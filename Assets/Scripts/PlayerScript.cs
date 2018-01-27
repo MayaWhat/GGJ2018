@@ -74,7 +74,7 @@ public class PlayerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = GetComponent<SpriteRenderer>();        
 	}
 	
 	// Update is called once per frame

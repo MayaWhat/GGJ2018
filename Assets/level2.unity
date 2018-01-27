@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &725906616 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1796296386229328, guid: ae3a7b2fc69eba64199cf54f6679957c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1064878868}
 --- !u!1001 &852069885
 Prefab:
   m_ObjectHideFlags: 0
@@ -152,6 +157,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114685674245971518, guid: 75a133746462e3c418ce70574efd3798,
+        type: 2}
+      propertyPath: cameraFocus
+      value: 
+      objectReference: {fileID: 725906616}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75a133746462e3c418ce70574efd3798, type: 2}
   m_IsPrefabParent: 0
@@ -164,11 +174,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4337437200776694, guid: ae3a7b2fc69eba64199cf54f6679957c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -20.15
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4337437200776694, guid: ae3a7b2fc69eba64199cf54f6679957c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 22.22
+      value: 20.1
       objectReference: {fileID: 0}
     - target: {fileID: 4337437200776694, guid: ae3a7b2fc69eba64199cf54f6679957c, type: 2}
       propertyPath: m_LocalPosition.z
