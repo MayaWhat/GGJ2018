@@ -43,6 +43,8 @@ public class PlayerScript : MonoBehaviour {
 
     bool canJump = true;
 
+    bool canToggle = true;
+
     Animator animator;
     SpriteRenderer sprite;
 
@@ -116,6 +118,25 @@ public class PlayerScript : MonoBehaviour {
         }     
     }
 
+    void HandleToggle() {
+		var inputToggle = Input.GetAxis("ToggleState"); 
+
+        if(!canToggle) {
+            if(inputToggle == 0) {
+                canToggle = true;
+            }
+            else {
+                return;
+            }
+        }
+
+        if (inputToggle != 0)
+        {
+            GameMasterScript.TheMaster.CurrentState = (GameMasterScript.TheMaster.CurrentState + 1) % 2;
+			canToggle = false;
+        }  
+	}
+
     bool TestPlatformBelow()
     {
         return floorCollisions.GetContacts(new ContactPoint2D[1]) > 0;
@@ -134,6 +155,7 @@ public class PlayerScript : MonoBehaviour {
         if(currentStunnedFrames <= 0) {
             HandleHorizontalMovement();
             HandleJumping();
+            HandleToggle();
         }
         else {
             currentStunnedFrames--;
@@ -155,7 +177,7 @@ public class PlayerScript : MonoBehaviour {
 	}
 
     void TakeDamage(int damage, bool stun) {
-        if(currentIFrames == 0) {
+        if(currentIFrames == 0 || damage > 900) {
             hp -= damage;
 
             if(WeDied) {

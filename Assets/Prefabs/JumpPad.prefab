@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4226712364359866}
   - component: {fileID: 61139533467761890}
   - component: {fileID: 114197963041715530}
+  - component: {fileID: 114943219251137440}
   m_Layer: 8
   m_Name: JumpPad
   m_TagString: Untagged
@@ -108,6 +109,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpVelocityBoost: 18
+--- !u!114 &114943219251137440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1900599686577160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52e0c3db33d261b48b6f3cff78e68c46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theState: 0
+  sprite: {fileID: 212346352959062838}
+  collisions: {fileID: 61139533467761890}
 --- !u!212 &212346352959062838
 SpriteRenderer:
   m_ObjectHideFlags: 1

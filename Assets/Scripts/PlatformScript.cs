@@ -21,19 +21,7 @@ public class PlatformScript : MonoBehaviour {
 	}
 
 	void SetColor(bool isEnabled) {
-		switch (theState)
-		{
-			case 0:
-				sprite.color = new Color(0f, 0f, 1f, isEnabled ? 1f : 0.2f);
-				break;
-			case 1:
-				sprite.color = new Color(0f, 1f, 0f, isEnabled ? 1f : 0.2f);
-				break;
-			default:
-				sprite.color = new Color(1f, 1f, 1f, isEnabled ? 1f : 0.2f);
-				break;
-
-		}
+		sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, isEnabled ? 1f : 0.2f);
 	}
 
 	private void HandleCurrentState() {

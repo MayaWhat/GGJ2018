@@ -17,8 +17,6 @@ public class GameMasterScript : MonoBehaviour {
 	[SerializeField]
 	int StartingState;
 
-	bool canToggle = true;
-
 	[SerializeField]
 	private int _currentState;
 	public int CurrentState {
@@ -61,25 +59,6 @@ public class GameMasterScript : MonoBehaviour {
 		
 	}
 
-	void HandleToggle() {
-		var inputToggle = Input.GetAxis("ToggleState"); 
-
-        if(!canToggle) {
-            if(inputToggle == 0) {
-                canToggle = true;
-            }
-            else {
-                return;
-            }
-        }
-
-        if (inputToggle != 0)
-        {
-            CurrentState = (CurrentState + 1) % 2;
-			canToggle = false;
-        }  
-	}
-
 	void HandleRestart() {
 		var inputRestart = Input.GetAxis("Restart");
 
@@ -90,7 +69,6 @@ public class GameMasterScript : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		HandleToggle();
 		HandleRestart();
 	}
 
