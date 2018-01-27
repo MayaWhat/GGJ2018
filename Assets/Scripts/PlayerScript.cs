@@ -35,6 +35,13 @@ public class PlayerScript : MonoBehaviour {
 
     bool canJump = true;
 
+    public bool WeDied {
+        get
+        {
+            return hp <= 0;
+        }
+    }
+
 
 	// Use this for initialization
 	void Start () {
@@ -95,6 +102,10 @@ public class PlayerScript : MonoBehaviour {
 
     void FixedUpdate()
     {
+        if(WeDied) {
+            return;
+        }
+
         HandleHorizontalMovement();
         HandleJumping();
 
@@ -104,13 +115,24 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        if(currentIFrames == 0) {
-		    var spike = other.GetComponent(typeof(SpikeScript));
-            if(spike != null && body.velocity.y < 0) {
-                currentIFrames = iFrames;
-                hp--;
-                body.AddForce(new Vector2(0, damageVelocityBoost), ForceMode2D.Impulse);
-            }
+        if(WeDied) {
+            return;
         }
+
+        var spike = other.GetComponent(typeof(SpikeScript)) as SpikeScript;
+        if(spike != null && ((spike.Inverted && body.velocity.y > 0) || (!spike.Inverted && body.velocity.y < 0))) {
+            if(currentIFrames == 0) {
+                hp--;
+
+                if(WeDied) {
+                    body.simulated = false;
+                    GameMasterScript.TheMaster.WeDied();
+                }
+
+                currentIFrames = iFrames;
+            }
+            
+            body.AddForce(new Vector2(0, damageVelocityBoost * (spike.Inverted ? -1 : 1)), ForceMode2D.Impulse);
+        }        
 	}
 }

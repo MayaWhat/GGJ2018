@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpikeScript : MonoBehaviour {
 
+	public bool Inverted;
+
 	// Use this for initialization
 	void Start () {
 		

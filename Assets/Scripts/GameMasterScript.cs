@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameMasterScript : MonoBehaviour {
 
@@ -32,6 +33,13 @@ public class GameMasterScript : MonoBehaviour {
 				StateChanged.Invoke(this, new EventArgs());
 			}
 		}
+	}
+
+	[SerializeField]
+	Text diedText;
+
+	public void WeDied() {
+		diedText.enabled = true;
 	}
 
 	void Awake() {

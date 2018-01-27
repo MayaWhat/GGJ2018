@@ -53,3 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LowerLevelBound: 0
   StartingState: 0
+  _currentState: 0
+  diedText: {fileID: 0}
