@@ -23,15 +23,23 @@ public class PlayerScript : MonoBehaviour {
     float jumpVelocityBoost;
 
     [SerializeField]
+    float spikeVelocityBoost;
+
+    [SerializeField]
     float damageVelocityBoost;
 
     [SerializeField]
     int iFrames;
 
     [SerializeField]
+    int stunnedFrames;
+
+    [SerializeField]
     int hp;
 
     int currentIFrames = 0;
+
+    int currentStunnedFrames = 0;
 
     bool canJump = true;
 
@@ -50,7 +58,13 @@ public class PlayerScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        var sprite = GetComponentInChildren<SpriteRenderer>();
+		if(currentIFrames > 0) {
+            sprite.color = new Color(1f, currentStunnedFrames > 0 ? 0.5f : 0f, 0f, 0.5f);
+        }
+        else {
+            sprite.color = new Color(1f, currentStunnedFrames > 0 ? 0.5f : 0f, 0f, 1f);
+        }
 	}
 
     void HandleHorizontalMovement()
@@ -106,8 +120,13 @@ public class PlayerScript : MonoBehaviour {
             return;
         }
 
-        HandleHorizontalMovement();
-        HandleJumping();
+        if(currentStunnedFrames <= 0) {
+            HandleHorizontalMovement();
+            HandleJumping();
+        }
+        else {
+            currentStunnedFrames--;
+        }
 
         if(currentIFrames > 0) {
             currentIFrames--;
@@ -119,23 +138,44 @@ public class PlayerScript : MonoBehaviour {
             return;
         }
 
-        var spike = other.GetComponent<SpikeScript>();
-        if(spike != null && ((spike.Inverted && body.velocity.y > 0) || (!spike.Inverted && body.velocity.y < 0))) {
-            if(currentIFrames == 0) {
-                hp--;
+        OnHitSpike(other);
+        OnHitDamage(other);
+	}
 
-                if(WeDied) {
-                    //body.simulated = false;
-                    GameMasterScript.TheMaster.WeDied();
-                }
+    void DealDamage(int damage, bool stun) {
+        if(currentIFrames == 0) {
+            hp -= damage;
 
-                currentIFrames = iFrames;
+            if(WeDied) {
+                //body.simulated = false;
+                GameMasterScript.TheMaster.WeDied();
             }
 
+            currentIFrames = iFrames;
+            if(stun) {
+                currentStunnedFrames = stunnedFrames;
+            }
+        }
+    }
+
+    void OnHitSpike(Collider2D other) {
+        var spike = other.GetComponent<SpikeScript>();
+        if(spike != null && ((spike.Inverted && body.velocity.y > 0) || (!spike.Inverted && body.velocity.y < 0))) {
+            DealDamage(1, true);
+
             var percentOfMax = Mathf.Clamp(Mathf.Abs(body.velocity.y) / Physics2D.gravity.magnitude, 0f, 1f);
-            var velocityIncrease = (damageVelocityBoost * percentOfMax) + Mathf.Abs(body.velocity.y);
+            var velocityIncrease = (spikeVelocityBoost * percentOfMax) + Mathf.Abs(body.velocity.y);
             
             body.AddForce(new Vector2(0, velocityIncrease * (spike.Inverted ? -1 : 1)), ForceMode2D.Impulse);
-        }        
-	}
+        }  
+    }
+
+    void OnHitDamage(Collider2D other) {
+        var damageDealer = other.GetComponent<DamageDealerScript>();
+        if(damageDealer != null && currentIFrames <= 0) {
+            DealDamage(damageDealer.DamageAmount, true);
+            var velocityChange = (((transform.position - damageDealer.transform.position).normalized) * damageVelocityBoost) - new Vector3(body.velocity.x, body.velocity.y, 0f);
+            body.AddForce(velocityChange, ForceMode2D.Impulse);
+        }
+    }
 }
