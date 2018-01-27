@@ -54,7 +54,8 @@ MonoBehaviour:
   LowerLevelBound: 0
   UpperLevelBound: 24
   LeftLevelBound: 0
-  RightLevelBound: 42
+  RightLevelBound: 40
   StartingState: 0
   _currentState: 0
   diedText: {fileID: 0}
+  firstScene: level1

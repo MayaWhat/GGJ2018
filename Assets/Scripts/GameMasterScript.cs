@@ -39,6 +39,9 @@ public class GameMasterScript : MonoBehaviour {
 	[SerializeField]
 	Text diedText;
 
+	[SerializeField]
+	string firstScene;
+
 	public void WeDied() {
 		diedText.enabled = true;
 	}
@@ -68,6 +71,13 @@ public class GameMasterScript : MonoBehaviour {
 		if(inputRestart > 0) {
 			var currentScene = SceneManager.GetActiveScene();
 			SceneManager.LoadScene(currentScene.name);
+		}
+
+		var inputRestartGame = Input.GetAxis("RestartGame");
+
+		if(inputRestartGame > 0) {
+			var currentScene = SceneManager.GetActiveScene();
+			SceneManager.LoadScene(firstScene);
 		}
 	}
 
