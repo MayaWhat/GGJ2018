@@ -21,7 +21,7 @@ public class PlatformScript : MonoBehaviour {
 	}
 
 	void SetColor(bool isEnabled) {
-		sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, isEnabled ? 1f : 0f);
+		sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, isEnabled ? 1f : 0.2f);
 	}
 
 	private void HandleCurrentState() {

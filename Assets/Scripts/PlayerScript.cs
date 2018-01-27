@@ -48,13 +48,20 @@ public class PlayerScript : MonoBehaviour {
     Animator animator;
     SpriteRenderer sprite;
 
-    AudioSource audio;
+    [SerializeField]
+    AudioSource fluteVoice;
+
+    [SerializeField]
+    AudioSource footstepSound;
 
     [SerializeField]
     AudioClip[] ouchClips;
 
     [SerializeField]
     AudioClip fallClip;
+
+    [SerializeField]
+    AudioClip[] footstepClips;
 
     public bool WeDied {
         get
@@ -68,7 +75,6 @@ public class PlayerScript : MonoBehaviour {
 	void Start () {
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
-        audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -84,7 +90,12 @@ public class PlayerScript : MonoBehaviour {
     void HandleHorizontalMovement()
     {
         var inputX = Input.GetAxis("Horizontal");
-        animator.SetBool("IsWalking", inputX != 0 && TestPlatformBelow());
+        var isWalking = inputX != 0 && TestPlatformBelow();
+
+        animator.SetBool("IsWalking", isWalking);
+        if(isWalking) {
+
+        }
 
         if (inputX > 0)
         {
@@ -102,6 +113,11 @@ public class PlayerScript : MonoBehaviour {
         {
             body.AddForce(new Vector2(-body.velocity.x, 0), ForceMode2D.Impulse);
         }
+    }
+
+    void Footstep() {
+        footstepSound.clip = footstepClips[Random.Range(0, footstepClips.Length)];
+        footstepSound.Play();
     }
 
     void HandleJumping()
@@ -190,13 +206,13 @@ public class PlayerScript : MonoBehaviour {
             hp -= damage;
 
             if(damage > 900) {
-                audio.clip = fallClip;
+                fluteVoice.clip = fallClip;
             }
             else {
-                audio.clip = ouchClips[Random.Range(0, ouchClips.Length)];
+                fluteVoice.clip = ouchClips[Random.Range(0, ouchClips.Length)];
             }
 
-            audio.Play();
+            fluteVoice.Play();
 
             if(WeDied) {
                 //body.simulated = false;
