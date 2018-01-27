@@ -157,32 +157,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114388322112686272, guid: 431a1c1eac07cc84eaaa269878ba5748,
+        type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1263988295}
     - target: {fileID: 1285084758843324, guid: 431a1c1eac07cc84eaaa269878ba5748, type: 2}
       propertyPath: m_Name
       value: FlyingBadGuy
       objectReference: {fileID: 0}
-    - target: {fileID: 61134595989650932, guid: 431a1c1eac07cc84eaaa269878ba5748,
-        type: 2}
-      propertyPath: m_EdgeRadius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 61134595989650932, guid: 431a1c1eac07cc84eaaa269878ba5748,
-        type: 2}
-      propertyPath: m_Size.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 61134595989650932, guid: 431a1c1eac07cc84eaaa269878ba5748,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4827490231864100, guid: 431a1c1eac07cc84eaaa269878ba5748, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4827490231864100, guid: 431a1c1eac07cc84eaaa269878ba5748, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
+    - target: {fileID: 1849076780803318, guid: 431a1c1eac07cc84eaaa269878ba5748, type: 2}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 431a1c1eac07cc84eaaa269878ba5748, type: 2}
@@ -895,6 +881,11 @@ Prefab:
 --- !u!1 &1263988291 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1796296386229328, guid: ae3a7b2fc69eba64199cf54f6679957c,
+    type: 2}
+  m_PrefabInternal: {fileID: 643762307}
+--- !u!4 &1263988295 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4337437200776694, guid: ae3a7b2fc69eba64199cf54f6679957c,
     type: 2}
   m_PrefabInternal: {fileID: 643762307}
 --- !u!1001 &1409487588

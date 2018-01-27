@@ -140,9 +140,10 @@ public class PlayerScript : MonoBehaviour {
 
         OnHitSpike(other);
         OnHitDamage(other);
+        OnDealDamage(other);
 	}
 
-    void DealDamage(int damage, bool stun) {
+    void TakeDamage(int damage, bool stun) {
         if(currentIFrames == 0) {
             hp -= damage;
 
@@ -161,7 +162,7 @@ public class PlayerScript : MonoBehaviour {
     void OnHitSpike(Collider2D other) {
         var spike = other.GetComponent<SpikeScript>();
         if(spike != null && ((spike.Inverted && body.velocity.y > 0) || (!spike.Inverted && body.velocity.y < 0))) {
-            DealDamage(1, true);
+            TakeDamage(1, true);
 
             var percentOfMax = Mathf.Clamp(Mathf.Abs(body.velocity.y) / Physics2D.gravity.magnitude, 0f, 1f);
             var velocityIncrease = (spikeVelocityBoost * percentOfMax) + Mathf.Abs(body.velocity.y);
@@ -173,15 +174,17 @@ public class PlayerScript : MonoBehaviour {
     void OnHitDamage(Collider2D other) {
         var damageDealer = other.GetComponent<DamageDealerScript>();
         if(damageDealer != null && currentIFrames <= 0) {
+            TakeDamage(damageDealer.DamageAmount, true);
             var velocityChange = (((transform.position - damageDealer.transform.position).normalized) * damageVelocityBoost) - new Vector3(body.velocity.x, body.velocity.y, 0f);
+            body.AddForce(velocityChange, ForceMode2D.Impulse);
+        }
+    }
 
-            if(damageDealer.ReceiveDamageIfAbove && velocityChange.y > 0) {
-                damageDealer.ReceiveDamage();
-            }
-            else {
-                DealDamage(damageDealer.DamageAmount, true);
-            }
-
+    void OnDealDamage(Collider2D other) {
+        var damageReceiver = other.GetComponent<DamageReceiverScript>();
+        if(damageReceiver != null) {
+            damageReceiver.ReceiveDamage();
+            var velocityChange = (((transform.position - damageReceiver.transform.position).normalized) * damageVelocityBoost) - new Vector3(body.velocity.x, body.velocity.y, 0f);
             body.AddForce(velocityChange, ForceMode2D.Impulse);
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class CanDieScript : MonoBehaviour {
 
 	[SerializeField]
-	DamageDealerScript damageReceiver;
+	DamageReceiverScript damageReceiver;
 
 	[SerializeField]
 	int hp;
