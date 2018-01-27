@@ -13,7 +13,7 @@ public class PulseScript : MonoBehaviour {
 	[SerializeField]
 	float rate;
 
-	SpriteRenderer[] renderers;
+	public SpriteRenderer[] renderers;
 
 	Color startColor;
 	Color endColor;
@@ -37,7 +37,15 @@ public class PulseScript : MonoBehaviour {
 	IEnumerator Fade(Color startColor, Color endColor) {
 		for (float f = 0f; f < 1; f += rate) {
 			foreach(var renderer in renderers) {
+				if(!enabled) {
+					break;
+				}
+
 				renderer.color = Color.Lerp(startColor, endColor, f);
+			}
+
+			if(!enabled) {
+				break;
 			}
 
 			yield return null;

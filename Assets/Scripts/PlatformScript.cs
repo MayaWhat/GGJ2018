@@ -9,29 +9,35 @@ public class PlatformScript : MonoBehaviour {
 	int theState = 0;
 
 	[SerializeField]
-	SpriteRenderer sprite;
+	protected SpriteRenderer sprite;
 
 	[SerializeField]
 	Collider2D collisions;
 
 	// Use this for initialization
 	void Start () {
+		OnStart();
+	}
+
+	protected void OnStart() {
 		HandleCurrentState();
 		GameMasterScript.TheMaster.StateChanged += StateChangedHandler;
 	}
 
-	void SetColor(bool isEnabled) {
+	protected Color disabledColor = new Color(0x18 / 255, 0x3F / 255, 0x3E / 255, 0.25f);
+
+	protected virtual void HandleEnabledState(bool isEnabled) {
 		if(isEnabled) {
-			StartCoroutine(Fade(sprite.color, Color.white));
+			StartCoroutine(Fade(sprite, sprite.color, Color.white));
 		}
 		else {
-			StartCoroutine(Fade(sprite.color, new Color(0x18 / 255, 0x3F / 255, 0x3E / 255, 0.25f)));
+			StartCoroutine(Fade(sprite, sprite.color, disabledColor));
 		}
 	}
 
-	IEnumerator Fade(Color startColor, Color endColor) {
+	protected IEnumerator Fade(SpriteRenderer renderer, Color startColor, Color endColor) {
 		for (float f = 0f; f < 1; f += 0.05f) {
-			sprite.color = Color.Lerp(startColor, endColor, f);
+			renderer.color = Color.Lerp(startColor, endColor, f);
 			yield return null;
 		}
 	}
@@ -39,11 +45,11 @@ public class PlatformScript : MonoBehaviour {
 	private void HandleCurrentState() {
 		if(GameMasterScript.TheMaster.CurrentState == theState) {
 			collisions.enabled = true;
-			SetColor(true);
+			HandleEnabledState(true);
 		}
 		else {
 			collisions.enabled = false;
-			SetColor(false);
+			HandleEnabledState(false);
 		}
 	}
 
