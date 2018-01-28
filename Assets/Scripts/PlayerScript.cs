@@ -74,7 +74,8 @@ public class PlayerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();        
+        sprite = GetComponent<SpriteRenderer>();  
+        GameMasterScript.TheMaster.StateChanged += StateChangedHandler;    
 	}
 
     Color theRed = new Color(1f, 0.1f, 0.1f);
@@ -297,4 +298,18 @@ public class PlayerScript : MonoBehaviour {
             body.AddForce(velocityChange, ForceMode2D.Impulse);
         }
     }
+
+    private void HandleCurrentState() {
+        
+		if(GameMasterScript.TheMaster.CurrentState == 0) {
+			
+		}
+		else {
+			
+		}
+	}
+
+	public void StateChangedHandler(object sender, System.EventArgs e) {
+		HandleCurrentState();
+	}
 }

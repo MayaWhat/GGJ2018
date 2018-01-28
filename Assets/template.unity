@@ -297,7 +297,7 @@ Prefab:
         type: 2}
       propertyPath: diedText
       value: 
-      objectReference: {fileID: 1471864244}
+      objectReference: {fileID: 2078453620}
     - target: {fileID: 114980966036165240, guid: 78bc3a80ca0c7b94ea9e8610a84f1e95,
         type: 2}
       propertyPath: spookyVision
@@ -306,12 +306,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78bc3a80ca0c7b94ea9e8610a84f1e95, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1471864244 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114710309872860372, guid: 11508b46a49f42e40b096bf8044b0a74,
-    type: 2}
-  m_PrefabInternal: {fileID: 2078453619}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &2078453619
 Prefab:
   m_ObjectHideFlags: 0
@@ -412,3 +406,9 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 11508b46a49f42e40b096bf8044b0a74, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2078453620 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114977611850609908, guid: 11508b46a49f42e40b096bf8044b0a74,
+    type: 2}
+  m_PrefabInternal: {fileID: 2078453619}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}

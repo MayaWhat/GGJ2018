@@ -48,7 +48,7 @@ public class GameMasterScript : MonoBehaviour {
 	}
 
 	[SerializeField]
-	Text diedText;
+	UnityEngine.UI.Image diedText;
 
 	[SerializeField]
 	string firstScene;
