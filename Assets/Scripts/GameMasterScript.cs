@@ -21,6 +21,9 @@ public class GameMasterScript : MonoBehaviour {
 	int StartingState;
 
 	[SerializeField]
+	Color spookyColour = new Color(1f, 0.0f, 0.65f, 0.15f);
+
+	[SerializeField]
 	private int _currentState;
 	public int CurrentState {
 		get
@@ -30,6 +33,14 @@ public class GameMasterScript : MonoBehaviour {
 		set
 		{
 			_currentState = value;
+			if(value == 0) {
+				StartCoroutine(Fade(spookyVision, spookyColour, new Color(1f, 1f, 1f, 0f)));
+			}
+			else {
+				StartCoroutine(Fade(spookyVision, new Color(1f, 1f, 1f, 0f), spookyColour));
+			}
+
+
 			if(StateChanged != null) {
 				StateChanged.Invoke(this, new EventArgs());
 			}
@@ -42,6 +53,9 @@ public class GameMasterScript : MonoBehaviour {
 	[SerializeField]
 	string firstScene;
 
+	[SerializeField]
+	SpriteRenderer spookyVision;
+
 	public void WeDied() {
 		diedText.enabled = true;
 	}
@@ -53,6 +67,13 @@ public class GameMasterScript : MonoBehaviour {
 		}
 
 		GameMasterScript.TheMaster = this;
+	}
+
+	protected IEnumerator Fade(SpriteRenderer renderer, Color startColor, Color endColor) {
+		for (float f = 0f; f < 1; f += 0.05f) {
+			renderer.color = Color.Lerp(startColor, endColor, f);
+			yield return null;
+		}
 	}
 
 	// Use this for initialization

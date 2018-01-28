@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1790708965248856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,6 +56,8 @@ MonoBehaviour:
   LeftLevelBound: 0
   RightLevelBound: 40
   StartingState: 0
+  spookyColour: {r: 1, g: 0, b: 0.65, a: 0.15}
   _currentState: 0
   diedText: {fileID: 0}
   firstScene: level1
+  spookyVision: {fileID: 0}

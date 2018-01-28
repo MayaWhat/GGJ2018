@@ -95,7 +95,7 @@ public class PlayerScript : MonoBehaviour {
     bool turningRed = true;
     bool fading = false;
     IEnumerator Fade(Color startColor, Color endColor) {
-		for (float f = 0f; f < 1; f += 0.1f) {
+		for (float f = 0f; f < 1; f += 0.2f) {
             sprite.color = Color.Lerp(startColor, endColor, f);
 
             if(currentIFrames <= 0) {
