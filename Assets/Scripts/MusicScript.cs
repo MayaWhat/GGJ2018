@@ -24,13 +24,19 @@ public class MusicScript : MonoBehaviour {
 		music1.Play();
 		music2.Play();
 
+		Reset();
+	}
+
+	void Reset() {
 		StartCoroutine(FadeInChannel(music1, 0.1f));
+		StartCoroutine(FadeOutChannel(music2, 0.1f));
 		GameMasterScript.TheMaster.StateChanged += StateChangedHandler;
 	}
 
 	void Awake() {
 		if(Instance != null && Instance != this) {
 			Destroy(gameObject);
+			Instance.Reset();
 		}
 		else {
 			Instance = this;
@@ -38,6 +44,8 @@ public class MusicScript : MonoBehaviour {
 
 		DontDestroyOnLoad(gameObject);
 	}
+
+	
 	
 	// Update is called once per frame
 	void Update () {
